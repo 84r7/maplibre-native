@@ -29,7 +29,7 @@ env:
 
 jobs:
   pre_job:
-    runs-on: ubuntu-22.04
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     outputs:
       should_skip: ${{ github.event_name != 'workflow_dispatch' && steps.changed-files.outputs.linux_any_modified != 'true' }}
     steps:
@@ -63,7 +63,7 @@ jobs:
             rust: false
           - renderer: opengl
             rust: true
-    runs-on: ubuntu-22.04
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     steps:
       - uses: actions/checkout@v4
         with:
@@ -199,7 +199,7 @@ jobs:
         uses: ./.github/actions/save-pr-number
 
   linux-coverage:
-    runs-on: ubuntu-22.04
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     steps:
       - uses: actions/checkout@v4
         with:
@@ -245,7 +245,7 @@ jobs:
   linux-ci-result:
     name: Linux CI Result
     if: needs.pre_job.outputs.should_skip != 'true' && always()
-    runs-on: ubuntu-22.04
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     needs:
       - pre_job
       - linux-build-and-test
