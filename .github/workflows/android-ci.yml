@@ -35,7 +35,7 @@ jobs:
           files_yaml_from_source_file: .github/changed-files.yml
 
   android-build:
-    runs-on: ubuntu-24.04
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     needs:
       - pre_job
     if: needs.pre_job.outputs.should_skip != 'true'
@@ -210,7 +210,7 @@ jobs:
             platform/android/InstrumentationTests${{ env.renderer }}.apk
 
   android-build-cpp-test:
-    runs-on: ubuntu-24.04
+    runs-on: blacksmith-4vcpu-ubuntu-2404
 
     needs:
       - pre_job
@@ -280,7 +280,7 @@ jobs:
       matrix:
         flavor: [opengl, vulkan]
 
-    runs-on: ubuntu-24.04
+    runs-on: blacksmith-4vcpu-ubuntu-2404
 
     needs:
       - pre_job
